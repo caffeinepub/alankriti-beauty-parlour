@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* === Beauty Parlour Palette (OKLCH) === */
+    /* Primary peach background */
+    --background: 0.95 0.02 35;
+    /* Deep warm charcoal text */
+    --foreground: 0.25 0.02 30;
+    /* Card / navbar: white */
+    --card: 1 0 0;
+    --card-foreground: 0.25 0.02 30;
+    --popover: 1 0 0;
+    --popover-foreground: 0.25 0.02 30;
+    /* Gold accent as primary */
+    --primary: 0.72 0.12 80;
+    --primary-foreground: 1 0 0;
+    /* Light blush secondary */
+    --secondary: 0.93 0.03 25;
+    --secondary-foreground: 0.25 0.02 30;
+    /* Muted warm gray */
+    --muted: 0.96 0.01 30;
+    --muted-foreground: 0.5 0.02 30;
+    /* Accent pastel pink */
+    --accent: 0.94 0.04 10;
+    --accent-foreground: 0.25 0.02 30;
+    /* Destructive */
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    /* Borders */
+    --border: 0.9 0.02 30;
+    --input: 0.9 0.02 30;
+    --ring: 0.72 0.12 80;
+    /* Charts */
+    --chart-1: 0.72 0.12 80;
+    --chart-2: 0.85 0.07 25;
+    --chart-3: 0.9 0.05 15;
+    --chart-4: 0.75 0.1 45;
+    --chart-5: 0.65 0.15 60;
+    /* Sidebar */
+    --sidebar: 1 0 0;
+    --sidebar-foreground: 0.25 0.02 30;
+    --sidebar-primary: 0.72 0.12 80;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.94 0.03 30;
+    --sidebar-accent-foreground: 0.25 0.02 30;
+    --sidebar-border: 0.9 0.02 30;
+    --sidebar-ring: 0.72 0.12 80;
+
+    /* Custom tokens */
+    --gold: 0.72 0.12 80;
+    --gold-light: 0.88 0.08 80;
+    --gold-dark: 0.58 0.14 75;
+    --peach: 0.95 0.03 30;
+    --peach-deep: 0.88 0.06 35;
+    --blush: 0.94 0.04 10;
+    --cream: 0.98 0.01 30;
+    --charcoal: 0.25 0.02 30;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Playfair Display", serif;
+  }
+}
+
+@layer utilities {
+  .font-script {
+    font-family: "Great Vibes", cursive;
+  }
+  .font-serif {
+    font-family: "Playfair Display", serif;
+  }
+  .font-sans {
+    font-family: "Inter", sans-serif;
+  }
+
+  .text-gold {
+    color: oklch(var(--gold));
+  }
+  .bg-gold {
+    background-color: oklch(var(--gold));
+  }
+  .border-gold {
+    border-color: oklch(var(--gold));
+  }
+  .bg-cream {
+    background-color: oklch(var(--cream));
+  }
+  .bg-peach {
+    background-color: oklch(var(--peach));
+  }
+  .bg-blush {
+    background-color: oklch(var(--blush));
+  }
+  .bg-gold-light {
+    background-color: oklch(var(--gold-light));
+  }
+  .text-charcoal {
+    color: oklch(var(--charcoal));
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 {
+    transition-delay: 0.1s;
+  }
+  .reveal-delay-2 {
+    transition-delay: 0.2s;
+  }
+  .reveal-delay-3 {
+    transition-delay: 0.3s;
+  }
+  .reveal-delay-4 {
+    transition-delay: 0.4s;
+  }
+}
+
+/* Pulse animation for floating WhatsApp button */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+.whatsapp-pulse::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25d366;
+  animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+  z-index: -1;
+}
+
+/* Navbar scroll transition */
+.navbar-transparent {
+  background: transparent;
+  box-shadow: none;
+}
+.navbar-white {
+  background: white;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Gold gradient button */
+.btn-gold {
+  background: linear-gradient(
+    135deg,
+    oklch(var(--gold)) 0%,
+    oklch(var(--gold-dark)) 100%
+  );
+  color: white;
+  transition: all 0.3s ease;
+}
+.btn-gold:hover {
+  background: linear-gradient(
+    135deg,
+    oklch(var(--gold-dark)) 0%,
+    oklch(var(--gold)) 100%
+  );
+  box-shadow: 0 4px 20px oklch(var(--gold) / 0.4);
+  transform: translateY(-1px);
+}
+
+/* Decorative gold line */
+.gold-divider {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(var(--gold)),
+    transparent
+  );
+  margin: 1.5rem auto;
+}
